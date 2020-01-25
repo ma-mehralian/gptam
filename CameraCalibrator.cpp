@@ -7,6 +7,7 @@
 #include "OpenGL.h"
 #include "Persistence/instances.h"
 
+#include "VideoSource_cam.h"
 #include "CameraCalibrator.h"
 #include "ATANCamera.h"
 
@@ -48,7 +49,7 @@ int main()
   
   try {
     
-      CameraCalibrator c;
+      CameraCalibrator c(make_shared<VideoSourceCam>());
       
       c.Run();
     }
@@ -68,7 +69,9 @@ int main()
 
 
 
-CameraCalibrator::CameraCalibrator() : mGLWindow(mVideoSource.getSize(), "Camera Calibrator"), mCamera("Camera", mVideoSource.getSize())
+CameraCalibrator::CameraCalibrator(shared_ptr<VideoSource> video_source) :
+    mVideoSource(video_source),
+    mGLWindow(video_source->getSize(), "Camera Calibrator"), mCamera("Camera", video_source->getSize())
 {
   
   
@@ -113,11 +116,11 @@ void CameraCalibrator::Run()
     
       
       // One color and one BW frame
-      cv::Mat imFrameRGB;
-      cv::Mat_<uchar> imFrameBW;
+      cv::Mat3b imFrameRGB;
+      cv::Mat1b imFrameBW;
       
       // Grab new video frame...
-      mVideoSource.GetAndFillFrameBWandRGB(imFrameBW, imFrameRGB);  
+      mVideoSource->GetAndFillFrameBWandRGB(imFrameBW, imFrameRGB);
       
       
       // Set up openGL. more comments in the following methods in GLWindow.h ...
@@ -229,7 +232,7 @@ void CameraCalibrator::Reset()
   
   if(*mpvnDisableDistortion) mCamera.DisableRadialDistortion();
   
-  mCamera.SetImageSize(mVideoSource.getSize());
+  mCamera.SetImageSize(mVideoSource->getSize());
   mbGrabNextFrame =false;
   *mpvnOptimizing = false;
   mvCalibImgs.clear();

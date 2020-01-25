@@ -1,23 +1,19 @@
 
-#include "VideoSource.h"
+#include "VideoSource_cam.h"
 
 #include "Persistence/instances.h"
-
 #include <opencv2/imgproc.hpp>
+
 #include <iostream>
 #include <sstream>
 
 using namespace std;
-
-
-
+using namespace cv;
 
 // For the time being, I am implementing webcam live capture.... All being well, more will follow...
 
 
-
-VideoSource::VideoSource()
-{
+VideoSourceCam::VideoSourceCam(){
 
   std::cout << "  Initiating capture device (whatever it is)..." << std::endl;
 
@@ -38,14 +34,14 @@ VideoSource::VideoSource()
   cout << " Screen size (width , height) : " << width << " , " <<height <<endl;
 };
 
-cv::Size2i VideoSource::getSize()
+cv::Size VideoSourceCam::getSize()
 { 
   return mirSize;
 };
 
 
 
-void VideoSource::GetAndFillFrameBWandRGB(cv::Mat_<uchar> &imBW, cv::Mat &imRGB)
+void VideoSourceCam::GetAndFillFrameBWandRGB(cv::Mat1b &img_gray, cv::Mat3b &img_bgr)
 {
   if ( !pcap->grab() ) {
     cout << " Could not even grab the first frame! exiting..." << endl;
@@ -57,12 +53,12 @@ void VideoSource::GetAndFillFrameBWandRGB(cv::Mat_<uchar> &imBW, cv::Mat &imRGB)
   /*cv::namedWindow("framed");
   cv::imshow("framed", capFrame);
   cv::waitKey(-1);*/
-  capFrame.copyTo(imRGB);
+  capFrame.copyTo(img_bgr);
   //imRGB = frame.clone(); // deep copy (in BGR!!!! We may need to do the conversion in the following line instead)
   //cv::cvtColor(frame, imRGB, CV_BGR2RGB); // We 'll see about this...
-  imBW.create(imRGB.rows, imRGB.cols);
+  img_gray.create(img_bgr.rows, img_bgr.cols);
 
-  cv::cvtColor(imRGB, imBW, cv::COLOR_BGR2GRAY); // conversion from BGR (OpenCV default) to grayscale
+  cv::cvtColor(img_bgr, img_gray, cv::COLOR_BGR2GRAY); // conversion from BGR (OpenCV default) to grayscale
   
 }
 

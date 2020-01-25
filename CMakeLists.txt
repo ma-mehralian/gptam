@@ -82,8 +82,9 @@ set(GPTAM_PROJ_SOURCE
 	${CMAKE_SOURCE_DIR}/EyeGame.cpp	
 	${CMAKE_SOURCE_DIR}/GLWindow2.cpp	
 	${CMAKE_SOURCE_DIR}/GLWindowMenu.cpp
-	${CMAKE_SOURCE_DIR}/VideoSource.cpp
-	${CMAKE_SOURCE_DIR}/ATANCamera.cpp
+        ${CMAKE_SOURCE_DIR}/VideoSource_cam.cpp
+        ${CMAKE_SOURCE_DIR}/VideoSource_tum.cpp
+        ${CMAKE_SOURCE_DIR}/ATANCamera.cpp
 	
 	${CMAKE_SOURCE_DIR}/FAST/fast_7_detect.cpp
 	${CMAKE_SOURCE_DIR}/FAST/fast_7_score.cpp
@@ -141,8 +142,10 @@ set(GPTAM_PROJ_INCLUDE
 	${CMAKE_SOURCE_DIR}/EyeGame.h
 	${CMAKE_SOURCE_DIR}/GLWindow2.h
 	${CMAKE_SOURCE_DIR}/GLWindowMenu.h
-	${CMAKE_SOURCE_DIR}/VideoSource.h
-	${CMAKE_SOURCE_DIR}/ATANCamera.h
+        ${CMAKE_SOURCE_DIR}/VideoSource.h
+        ${CMAKE_SOURCE_DIR}/VideoSource_cam.h
+        ${CMAKE_SOURCE_DIR}/VideoSource_tum.h
+        ${CMAKE_SOURCE_DIR}/ATANCamera.h
 	${CMAKE_SOURCE_DIR}/MEstimator.h
 	
 	${CMAKE_SOURCE_DIR}/FAST/prototypes.h
@@ -186,8 +189,9 @@ set(CALIB_PROJ_SOURCE
 	${CMAKE_SOURCE_DIR}/CameraCalibrator.cpp
 	${CMAKE_SOURCE_DIR}/GLWindow2.cpp	
 	${CMAKE_SOURCE_DIR}/GLWindowMenu.cpp
-	${CMAKE_SOURCE_DIR}/VideoSource.cpp
-	${CMAKE_SOURCE_DIR}/CalibImage.cpp
+        ${CMAKE_SOURCE_DIR}/VideoSource_cam.cpp
+        ${CMAKE_SOURCE_DIR}/VideoSource_tum.cpp
+        ${CMAKE_SOURCE_DIR}/CalibImage.cpp
 	${CMAKE_SOURCE_DIR}/CalibCornerPatch.cpp
 	${CMAKE_SOURCE_DIR}/ATANCamera.cpp
 	${CMAKE_SOURCE_DIR}/FAST/fast_7_detect.cpp
@@ -219,8 +223,10 @@ set(CALIB_PROJ_INCLUDE
 	
 	${CMAKE_SOURCE_DIR}/GLWindow2.h
 	${CMAKE_SOURCE_DIR}/GLWindowMenu.h
-	${CMAKE_SOURCE_DIR}/VideoSource.h
-	${CMAKE_SOURCE_DIR}/CalibImage.h
+        ${CMAKE_SOURCE_DIR}/VideoSource.h
+        ${CMAKE_SOURCE_DIR}/VideoSource_cam.h
+        ${CMAKE_SOURCE_DIR}/VideoSource_tum.h
+        ${CMAKE_SOURCE_DIR}/CalibImage.h
 	${CMAKE_SOURCE_DIR}/CalibCornerPatch.h
 	${CMAKE_SOURCE_DIR}/ATANCamera.h
 	${CMAKE_SOURCE_DIR}/CameraCalibrator.h

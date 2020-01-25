@@ -24,7 +24,9 @@ using namespace std;
 using namespace Persistence;
 
 
-System::System() : mGLWindow(mVideoSource.getSize(), "PTAM")
+System::System(std::shared_ptr<VideoSource> input_video_source):
+    mVideoSource(input_video_source),
+    mGLWindow(input_video_source->getSize(), "PTAM")
 {
   GUI.RegisterCommand("exit", GUICommandCallBack, this);
   GUI.RegisterCommand("quit", GUICommandCallBack, this);
@@ -50,7 +52,7 @@ System::System() : mGLWindow(mVideoSource.getSize(), "PTAM")
   mpMapMaker = new MapMaker(*mpMap, *mpCamera);
   cout <<"DONE"<<endl;
   cout << "c. The Tracker!" <<endl;
-  mpTracker = new Tracker(mVideoSource.getSize(), *mpCamera, *mpMap, *mpMapMaker);
+  mpTracker = new Tracker(mVideoSource->getSize(), *mpCamera, *mpMap, *mpMapMaker);
   cout <<"DONE"<<endl;
   cout << "d. The The AR Driver!" <<endl;
   mpARDriver = new ARDriver(*mpCamera,  mGLWindow);
@@ -81,7 +83,7 @@ void System::Run()
       // and one RGB, for drawing.
 
       // Get a new frame
-      mVideoSource.GetAndFillFrameBWandRGB(mimFrameBW, mimFrameRGB);  
+      mVideoSource->GetAndFillFrameBWandRGB(mimFrameBW, mimFrameRGB);
       static bool bFirstFrame = true;
       // its the first frame, initialize the AR driver 
       if(bFirstFrame) {

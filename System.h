@@ -11,6 +11,7 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 
+#include <memory>
 #include "VideoSource.h"
 #include "GLWindow2.h"
 
@@ -27,14 +28,14 @@ class MapViewer;
 class System
 {
 public:
-  System();
+  System(std::shared_ptr<VideoSource> input_video_source);
   void Run();
   
 private:
-  VideoSource mVideoSource;
+  std::shared_ptr<VideoSource> mVideoSource;
   GLWindow2 mGLWindow;
-  cv::Mat mimFrameRGB;
-  cv::Mat_<uchar> mimFrameBW;
+  cv::Mat3b mimFrameRGB;
+  cv::Mat1b mimFrameBW;
   
   Map *mpMap; 
   MapMaker *mpMapMaker; 

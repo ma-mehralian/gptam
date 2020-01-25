@@ -9,6 +9,8 @@
 #include <iostream>
 
 #include "Persistence/instances.h"
+#include "VideoSource_cam.h"
+#include "VideoSource_tum.h"
 #include "System.h"
 
 using namespace std;
@@ -32,7 +34,8 @@ int main(int argc, char** argv)
 
   try
   {
-    System s;
+    string rgbd_dataset_dir = "/home/amin/data/rgbd_dataset_freiburg2_desk";
+    System s(make_shared<VideoSourceTUM>(rgbd_dataset_dir));
     s.Run();
   }
   catch(cv::Exception e) {

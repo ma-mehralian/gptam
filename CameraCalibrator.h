@@ -20,7 +20,7 @@ class CameraCalibrator
 {
 public:
   
-  CameraCalibrator();
+  CameraCalibrator(shared_ptr<VideoSource> video_source);
   void Run();
   
   
@@ -34,7 +34,7 @@ protected:
   void HandleFrame(cv::Mat_<uchar> imFrame);
   static void MainLoopCallback(void* pvUserData);
   void MainLoopStep();
-  VideoSource mVideoSource;
+  shared_ptr<VideoSource> mVideoSource;
   
   GLWindow2 mGLWindow;
   ATANCamera mCamera;
