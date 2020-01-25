@@ -6,7 +6,7 @@
 // the original PTAM by Klein and Murray (Copyright 2008 Isis Innovation Limited)
 
 #include "EyeGame.h"
-
+#include <opencv2/imgproc.hpp>
 #include "GCVD/GLHelpers.h"
 
 

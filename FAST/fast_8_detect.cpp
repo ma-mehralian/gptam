@@ -3,8 +3,7 @@
 //#include <cvd/byte.h>
 
 #include <cxcore.hpp>
-#include <cv.hpp>
-#include <highgui.hpp>
+#include <opencv2/highgui.hpp>
 
 // This is mechanically generated code. 
 

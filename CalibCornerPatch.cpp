@@ -11,6 +11,7 @@
 //#include "GCVD/Addedutils.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <opencv2/imgproc.hpp>
 
 
 using namespace std;

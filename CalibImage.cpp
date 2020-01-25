@@ -7,6 +7,7 @@
 #include "OpenGL.h"
 #include "CalibImage.h"
 #include <stdlib.h>
+#include <opencv2/imgproc.hpp>
 
 #include "FAST/fast_corner.h"
 #include "GCVD/image_interpolate.h"

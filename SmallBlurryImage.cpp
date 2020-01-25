@@ -6,7 +6,7 @@
 
 
 #include "SmallBlurryImage.h"
-
+#include <opencv2/imgproc.hpp>
 #include "GCVD/GraphSLAM.h"
 #include "GCVD/Addedutils.h"
 
