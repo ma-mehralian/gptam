@@ -1,10 +1,15 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.4)
+set_property(GLOBAL PROPERTY USE_FOLDERS On)
+
+#======== Set Output paths
+set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 
 set(GPTAM_PROJ_NAME gptam)
 set(CALIB_PROJ_NAME gcalibrator)
-
-
-
 
 ######################################
 # The external reference directory (searching) for cmake
@@ -13,31 +18,7 @@ list( APPEND CMAKE_MODULE_PATH
   ${EXT_DIR}
 )
 
-## find openCV
-set( OpenCV_INCLUDE_DIRS
-	"/usr/local/include/opencv"
-	"/usr/local/include/opencv2"
-)
-
-set( OpenCV_LIBS
-	"/usr/local/lib/libopencv_calib3d.so"
-	"/usr/local/lib/libopencv_core.so"
-	"/usr/local/lib/libopencv_features2d.so"
-	"/usr/local/lib/libopencv_flann.so"
-	"/usr/local/lib/libopencv_highgui.so"
-	#"/usr/local/lib/libopencv_imgcodecs.so"
-	"/usr/local/lib/libopencv_imgproc.so"
-	"/usr/local/lib/libopencv_ml.so"
-	"/usr/local/lib/libopencv_objdetect.so"
-	"/usr/local/lib/libopencv_photo.so"
-	#"/usr/local/lib/libopencv_shape.so"
-	"/usr/local/lib/libopencv_stitching.so"
-	"/usr/local/lib/libopencv_superres.so"
-	"/usr/local/lib/libopencv_video.so"
-	"/usr/local/lib/libopencv_videoio.so"
-	"/usr/local/lib/libopencv_videostab.so"
-	
-)
+find_package(OpenCV REQUIRED)
 
 
 list( APPEND
